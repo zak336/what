@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Suspense } from "react";
 
+export const dynamic = 'force-dynamic';
+
 type SurveyData = {
   willingToPay: "yes" | "no" | "maybe";
   pricePoint: string;

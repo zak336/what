@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { CheckCircle, Award, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 
+export const dynamic = 'force-dynamic';
+
 function SuccessContent() {
   const searchParams = useSearchParams();
   const position = searchParams.get("position") || "XX";

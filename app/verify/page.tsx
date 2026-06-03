@@ -8,6 +8,8 @@ import { Upload, CheckCircle, Shield, Award, Users, X } from "lucide-react";
 import { validateFile } from "@/lib/validation";
 import { Suspense } from "react";
 
+export const dynamic = 'force-dynamic';
+
 function VerifyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
