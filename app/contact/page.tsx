@@ -87,18 +87,6 @@ export default function ContactPage() {
                 <p className="text-purple-100 text-sm">The Living Archive of College Life</p>
               </div>
             </div>
-
-            <div className="flex items-start gap-4">
-              <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
-                <Mail className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">Email Us</h3>
-                <a href="mailto:hello@commonroom.college" className="text-purple-100 text-sm hover:underline">
-                  hello@commonroom.college
-                </a>
-              </div>
-            </div>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">

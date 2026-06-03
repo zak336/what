@@ -211,7 +211,7 @@ export default function WaitlistForm() {
               <input
                 {...register("department")}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                placeholder="Computer Science"
+                placeholder="CSE"
               />
               {errors.department && (
                 <p className="text-red-600 text-sm mt-1">{errors.department.message as string}</p>
