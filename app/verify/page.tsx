@@ -6,8 +6,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Upload, CheckCircle, Shield, Award, Users, X } from "lucide-react";
 import { validateFile } from "@/lib/validation";
+import { Suspense } from "react";
 
-export default function VerifyPage() {
+function VerifyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const waitlistId = searchParams.get("waitlistId") || "";
@@ -201,5 +202,13 @@ export default function VerifyPage() {
         </motion.div>
       </div>
     </main>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
+      <VerifyContent />
+    </Suspense>
   );
 }

@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { Suspense } from "react";
 
 type SurveyData = {
   willingToPay: "yes" | "no" | "maybe";
@@ -15,7 +16,7 @@ type SurveyData = {
   paymentStyle: "monthly" | "yearly" | "both";
 };
 
-export default function SurveyPage() {
+function SurveyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitError, setSubmitError] = useState("");
@@ -284,5 +285,13 @@ export default function SurveyPage() {
         </motion.div>
       </div>
     </main>
+  );
+}
+
+export default function SurveyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
+      <SurveyContent />
+    </Suspense>
   );
 }

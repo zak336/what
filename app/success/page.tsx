@@ -4,8 +4,9 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Award, ChevronRight } from "lucide-react";
+import { Suspense } from "react";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const position = searchParams.get("position") || "XX";
   const waitlistId = searchParams.get("waitlistId");
@@ -106,5 +107,13 @@ export default function SuccessPage() {
         </motion.div>
       </div>
     </main>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }
