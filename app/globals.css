@@ -1,9 +1,49 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #8b5cf6;
-  --color-secondary: #3b82f6;
-  --color-accent: #f59e0b;
+  --color-cream: #faf8f3;
+  --color-paper: #f5f1e8;
+  --color-ink: #1a1a1a;
+  --color-blue: #2563eb;
+  --color-orange: #ea580c;
+  --color-green: #059669;
+  --color-purple: #7c3aed;
+  --color-red: #dc2626;
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.brutalist-border {
+  border: 3px solid var(--color-ink);
+  box-shadow: 6px 6px 0px var(--color-ink);
+}
+
+.brutalist-border-sm {
+  border: 2px solid var(--color-ink);
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--color-ink);
+}
+
+.stamp {
+  transform: rotate(-5deg);
+  border: 2px dashed var(--color-ink);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.handwritten {
+  font-family: 'Comic Sans MS', cursive;
 }

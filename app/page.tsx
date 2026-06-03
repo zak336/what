@@ -1,17 +1,17 @@
-import Hero from "@/components/Hero";
-import WhySection from "@/components/WhySection";
-import Features from "@/components/Features";
+import NewHero from "@/components/NewHero";
+import YearbookSection from "@/components/YearbookSection";
+import NewFeatures from "@/components/NewFeatures";
+import NewSocialProof from "@/components/NewSocialProof";
 import WaitlistForm from "@/components/WaitlistForm";
-import SocialProof from "@/components/SocialProof";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Hero />
-      <WhySection />
-      <Features />
-      <SocialProof />
+      <NewHero />
+      <YearbookSection />
+      <NewFeatures />
+      <NewSocialProof />
       <WaitlistForm />
       <Footer />
     </main>

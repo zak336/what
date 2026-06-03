@@ -109,58 +109,61 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist-form" className="py-20 px-4 bg-white">
+    <section id="waitlist-form" className="py-20 px-4 bg-[#faf8f3]">
       <div className="max-w-2xl mx-auto">
         <button
           onClick={() => setSelectedType(null)}
-          className="text-purple-600 hover:text-purple-700 mb-6 font-medium"
+          className="text-black hover:underline mb-6 font-bold flex items-center gap-2"
         >
-          ← Change College
+          ← Change College Type
         </button>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="mb-8"
         >
-          <h2 className="text-4xl font-bold mb-4">Join the Founding Waitlist</h2>
+          <div className="inline-block border-2 border-black px-4 py-1 mb-4 bg-white">
+            <span className="text-xs font-bold uppercase tracking-wider">Join Waitlist</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">Claim Your Spot</h2>
           {selectedType === "other" && (
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-4">
-              <p className="text-sm text-blue-900 mb-2">
-                <strong>Common Room is launching first at GEC Raipur.</strong>
+            <div className="bg-yellow-100 border-2 border-black p-6 mb-4 brutalist-border-sm">
+              <p className="font-bold mb-2">
+                🚀 Common Room is launching first at GEC Raipur.
               </p>
-              <p className="text-sm text-blue-800">
-                Students from other colleges can join the waitlist today and will be notified when their campus becomes available.
+              <p className="text-sm mb-2">
+                Students from other colleges can join the waitlist and will be notified when their campus becomes available.
               </p>
-              <p className="text-sm text-blue-700 mt-2 font-medium">
-                💡 The more students from your college join, the sooner we can launch there.
+              <p className="text-sm font-semibold">
+                💡 More students = Faster launch
               </p>
             </div>
           )}
         </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-50 p-8 rounded-lg border-2 border-gray-200">
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white border-3 border-black p-8 brutalist-border">
           <input type="hidden" {...register("collegeType")} />
           
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-2">Full Name *</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Full Name *</label>
               <input
                 {...register("fullName")}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
                 placeholder="John Doe"
               />
               {errors.fullName && (
-                <p className="text-red-600 text-sm mt-1">{errors.fullName.message as string}</p>
+                <p className="text-red-600 text-sm mt-1 font-semibold">{errors.fullName.message as string}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Email Address *</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Email Address *</label>
               <input
                 type="email"
                 {...register("email")}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
                 placeholder="john@example.com"
               />
               {errors.email && (
@@ -170,10 +173,10 @@ export default function WaitlistForm() {
 
             {selectedType === "gec" ? (
               <div>
-                <label className="block text-sm font-medium mb-2">College *</label>
+                <label className="block text-sm font-bold mb-2 uppercase tracking-wider">College *</label>
                 <input
                   {...register("collegeName")}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
+                  className="w-full px-4 py-3 border-2 border-black bg-gray-100 cursor-not-allowed"
                   value="GEC Raipur"
                   readOnly
                 />
@@ -181,11 +184,11 @@ export default function WaitlistForm() {
             ) : (
               <>
                 <div>
-                  <label className="block text-sm font-medium mb-2">College *</label>
+                  <label className="block text-sm font-bold mb-2 uppercase tracking-wider">College *</label>
                   <select
                     {...register("collegeName")}
                     onChange={(e) => setShowCustomCollege(e.target.value === "Other College (Not Listed)")}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
                   >
                     <option value="">Select your college</option>
                     {CHHATTISGARH_COLLEGES.map((college) => (
@@ -199,10 +202,10 @@ export default function WaitlistForm() {
 
                 {showCustomCollege && (
                   <div>
-                    <label className="block text-sm font-medium mb-2">Enter College Name *</label>
+                    <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Enter College Name *</label>
                     <input
                       {...register("customCollege")}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
                       placeholder="Your college name"
                     />
                   </div>
@@ -211,10 +214,10 @@ export default function WaitlistForm() {
             )}
 
             <div>
-              <label className="block text-sm font-medium mb-2">Department / Branch *</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Department / Branch *</label>
               <input
                 {...register("department")}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
                 placeholder="CSE"
               />
               {errors.department && (
@@ -223,10 +226,10 @@ export default function WaitlistForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Year of Study *</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Year of Study *</label>
               <select
                 {...register("yearOfStudy")}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
               >
                 <option value="1st">1st Year</option>
                 <option value="2nd">2nd Year</option>
@@ -240,7 +243,7 @@ export default function WaitlistForm() {
               type="submit"
               disabled={isSubmitting}
               onClick={() => console.log("Button clicked!", errors)}
-              className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="w-full py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Joining..." : "Join the Founding Waitlist"}
             </button>
