@@ -27,13 +27,13 @@ export default function ThankYouPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center px-4 py-20">
+    <main className="min-h-screen bg-[#faf8f3] flex items-center justify-center px-4 py-20">
       <div className="max-w-2xl w-full">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl p-8 md:p-12 text-center"
+          className="bg-white  p-8 md:p-12 text-center"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -52,7 +52,7 @@ export default function ThankYouPage() {
             Your feedback helps us build something truly special for college communities
           </p>
 
-          <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 mb-8">
+          <div className="bg-blue-100 border-2 border-black  p-6 mb-8">
             <h2 className="font-bold text-lg mb-2">What Happens Next?</h2>
             <ul className="text-sm text-gray-700 space-y-2 text-left max-w-md mx-auto">
               <li className="flex items-start gap-2">
@@ -73,7 +73,7 @@ export default function ThankYouPage() {
           <div className="space-y-3">
             <Link
               href="/"
-              className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-2 w-full py-4 bg-black text-white border-3 border-black  font-bold hover-lift uppercase tracking-wide"
             >
               <Home className="w-5 h-5" />
               Back to Home
@@ -81,7 +81,7 @@ export default function ThankYouPage() {
 
             <button
               onClick={handleShare}
-              className="flex items-center justify-center gap-2 w-full py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-4 bg-white border-3 border-black text-black  font-semibold hover-lift"
             >
               <Share2 className="w-5 h-5" />
               Share with Friends

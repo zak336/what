@@ -115,38 +115,41 @@ function VerifyContent() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50 py-20 px-4">
+    <main className="min-h-screen bg-[#faf8f3] py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href="/" className="text-sm mb-8 hover:underline inline-block">← Back to Home</Link>
+        <Link href="/" className="text-black hover:underline mb-8 inline-block font-bold">← Back to Home</Link>
         
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="text-center mb-12">
-            <div className="text-5xl mb-4">🎓</div>
-            <h1 className="text-4xl font-bold mb-4">Get Priority Access</h1>
-            <p className="text-gray-600 text-lg">Verify your student status to unlock exclusive benefits</p>
+          <div className="mb-12">
+            <div className="inline-block border-2 border-black px-4 py-1 mb-4 bg-white">
+              <span className="text-xs font-bold uppercase tracking-wider">Optional Step</span>
+            </div>
+            <div className="text-6xl mb-4">🎓</div>
+            <h1 className="text-5xl md:text-6xl font-black mb-4">Get Priority Access</h1>
+            <p className="text-xl text-gray-700">Verify your student status to unlock exclusive benefits</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 mb-12">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="bg-white p-4 rounded-lg border-2 border-gray-200 flex items-center gap-3">
-                  <Icon className="w-6 h-6 text-purple-600 flex-shrink-0" />
-                  <span className="text-sm font-medium">{benefit.text}</span>
+                <div key={index} className="bg-white p-5 border-2 border-black flex items-center gap-3">
+                  <Icon className="w-7 h-7 flex-shrink-0" />
+                  <span className="text-sm font-bold">{benefit.text}</span>
                 </div>
               );
             })}
           </div>
 
-          <div className="bg-white p-8 rounded-lg border-2 border-gray-200">
-            <h2 className="text-xl font-bold mb-4">Upload Verification Document</h2>
+          <div className="bg-white p-8 border-3 border-black brutalist-border">
+            <h2 className="text-2xl font-black mb-6 uppercase">Upload Document</h2>
             
             <div className="mb-6">
-              <label className="block text-sm font-medium mb-2">Document Type</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Document Type</label>
               <select
                 value={documentType}
                 onChange={(e) => setDocumentType(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
               >
                 <option>Student ID Card</option>
                 <option>Admission Letter</option>
@@ -160,8 +163,8 @@ function VerifyContent() {
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
               onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                dragActive ? "border-purple-600 bg-purple-50" : "border-gray-300"
+              className={`border-2 border-dashed p-8 text-center transition-colors ${
+                dragActive ? "border-black bg-blue-50" : "border-black"
               }`}
             >
               {file ? (
@@ -180,28 +183,28 @@ function VerifyContent() {
                   <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-700 font-medium mb-2">Drag and drop your document here</p>
                   <p className="text-sm text-gray-500 mb-4">or</p>
-                  <label className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 cursor-pointer transition-colors">
+                  <label className="inline-block px-6 py-3 bg-black text-white font-bold hover-lift cursor-pointer uppercase text-sm">
                     Choose File
                     <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleChange} className="hidden" />
                   </label>
-                  <p className="text-xs text-gray-500 mt-4">JPG, PNG, or PDF • Max 3MB</p>
+                  <p className="text-xs text-gray-500 mt-4 font-semibold">JPG, PNG, or PDF • Max 3MB</p>
                 </>
               )}
             </div>
 
-            <div className="mt-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg flex gap-2">
-              <Shield className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="mt-6 p-4 bg-blue-100 border-2 border-black flex gap-2">
+              <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" />
               <div className="text-sm">
-                <p className="font-medium text-blue-900 mb-1">Your Privacy Matters</p>
-                <p className="text-blue-700">Documents are encrypted and used solely for verification.</p>
+                <p className="font-bold mb-1">Your Privacy Matters</p>
+                <p className="text-gray-700">Documents are encrypted and used solely for verification.</p>
               </div>
             </div>
 
             <div className="mt-8 space-y-3">
-              <button onClick={handleUpload} disabled={!file || uploading} className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50">
+              <button onClick={handleUpload} disabled={!file || uploading} className="w-full py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed">
                 {uploading ? "Uploading..." : "Upload Document"}
               </button>
-              <button onClick={handleSkip} className="w-full py-3 text-gray-600 hover:text-gray-800 text-sm font-medium">
+              <button onClick={handleSkip} className="w-full py-3 text-black hover:underline font-bold uppercase text-sm">
                 Skip for Now
               </button>
             </div>
@@ -214,7 +217,7 @@ function VerifyContent() {
 
 export default function VerifyPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#faf8f3] flex items-center justify-center"><div className="text-xl font-bold">Loading...</div></div>}>
       <VerifyContent />
     </Suspense>
   );

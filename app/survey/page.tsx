@@ -88,20 +88,23 @@ function SurveyContent() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-20 px-4">
+    <main className="min-h-screen bg-[#faf8f3] py-20 px-4">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="text-5xl mb-4">💭</div>
-            <h1 className="text-4xl font-bold mb-4">Help Us Build the Right Product</h1>
-            <p className="text-gray-600 text-lg mb-2">
+          <div className="mb-12">
+            <div className="inline-block border-2 border-black px-4 py-1 mb-4 bg-white">
+              <span className="text-xs font-bold uppercase tracking-wider">Final Step</span>
+            </div>
+            <div className="text-6xl mb-4">💭</div>
+            <h1 className="text-5xl md:text-6xl font-black mb-4">Help Us Build</h1>
+            <p className="text-xl text-gray-700 mb-4">
               Your feedback shapes what we build
             </p>
-            <div className="inline-block px-4 py-2 bg-blue-50 border-2 border-blue-200 rounded-lg text-sm text-blue-700 font-medium">
+            <div className="inline-block px-4 py-2 bg-blue-100 border-2 border-black text-sm font-bold">
               ℹ️ This survey does not affect your waitlist position
             </div>
           </div>
@@ -112,14 +115,14 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 1. Would you be willing to pay for premium access?
               </h2>
               <div className="space-y-3">
                 {["yes", "no", "maybe"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                  <label key={option} className="flex items-center gap-3 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer">
                     <input
                       type="radio"
                       value={option}
@@ -137,14 +140,14 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 2. What monthly price feels reasonable?
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {["Free Only", "₹5", "₹10", "₹20", "₹30", "₹50", "₹100+"].map((price) => (
-                  <label key={price} className="flex items-center gap-2 p-3 border-2 border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer text-center">
+                  <label key={price} className="flex items-center gap-2 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer text-center">
                     <input
                       type="radio"
                       value={price}
@@ -162,7 +165,7 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 3. Which features would justify a subscription?
@@ -170,7 +173,7 @@ function SurveyContent() {
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
               <div className="space-y-3">
                 {featureOptions.map((feature) => (
-                  <label key={feature} className="flex items-center gap-3 p-3 border-2 border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                  <label key={feature} className="flex items-center gap-3 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer">
                     <input
                       type="checkbox"
                       value={feature}
@@ -188,7 +191,7 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 4. What would make ₹10/month worth paying?
@@ -196,7 +199,7 @@ function SurveyContent() {
               <textarea
                 {...register("worthPayingFor")}
                 rows={4}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="Tell us what features or benefits would make you consider a paid subscription..."
               />
             </motion.div>
@@ -206,7 +209,7 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 5. Maximum amount you would realistically pay per month?
@@ -216,7 +219,7 @@ function SurveyContent() {
                 <input
                   type="number"
                   {...register("maxAmount")}
-                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="flex-1 px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   placeholder="Enter amount"
                   min="0"
                 />
@@ -229,7 +232,7 @@ function SurveyContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="bg-white p-6 rounded-lg border-2 border-gray-200"
+              className="bg-white p-6 border-2 border-black"
             >
               <h2 className="text-lg font-bold mb-4">
                 6. Preferred payment style?
@@ -240,7 +243,7 @@ function SurveyContent() {
                   { value: "yearly", label: "Yearly", desc: "Pay once a year (usually cheaper)" },
                   { value: "both", label: "Both Options", desc: "Flexibility to choose" },
                 ].map((option) => (
-                  <label key={option.value} className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                  <label key={option.value} className="flex items-start gap-3 p-4 border-2 border-black hover:bg-gray-50 cursor-pointer">
                     <input
                       type="radio"
                       value={option.value}
@@ -265,7 +268,7 @@ function SurveyContent() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="w-full py-4 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide transition-opacity disabled:opacity-50"
               >
                 {isSubmitting ? "Submitting..." : "Submit Survey"}
               </button>
@@ -299,7 +302,7 @@ function SurveyContent() {
 
 export default function SurveyPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#faf8f3] flex items-center justify-center"><div className="text-xl">Loading...</div></div>}>
       <SurveyContent />
     </Suspense>
   );

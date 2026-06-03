@@ -43,16 +43,16 @@ export default function ContactPage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center px-4 py-20">
+      <main className="min-h-screen bg-[#faf8f3] flex items-center justify-center px-4 py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-2xl p-12 text-center max-w-md"
+          className="bg-white border-3 border-black brutalist-border p-12 text-center max-w-md"
         >
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Message Sent!</h2>
           <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
-          <Link href="/" className="text-purple-600 hover:text-purple-700 font-medium">
+          <Link href="/" className="text-black hover:underline font-bold">
             ← Back to Home
           </Link>
         </motion.div>
@@ -67,31 +67,31 @@ export default function ContactPage() {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-purple-600 to-blue-600 text-white p-12 md:p-16 flex flex-col justify-center"
+          className="bg-[#faf8f3] text-black p-12 md:p-16 flex flex-col justify-center"
         >
           <Link href="/" className="text-sm mb-8 hover:underline">← Back to Home</Link>
           
           <h1 className="text-5xl font-bold mb-6">Get in Touch</h1>
           
-          <p className="text-xl text-purple-100 mb-8">
+          <p className="text-xl text-gray-700 mb-8">
             We'd love to hear from you. Whether you have questions, feedback, or just want to say hello.
           </p>
 
           <div className="space-y-6 mb-12">
             <div className="flex items-start gap-4">
-              <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+              <div className="bg-white/20 p-3 ">
                 <MessageSquare className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="font-bold mb-1">Common Room</h3>
-                <p className="text-purple-100 text-sm">The Living Archive of College Life</p>
+                <p className="text-gray-700 text-sm">The Living Archive of College Life</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+          <div className="bg-white/20  p-6">
             <h3 className="font-bold mb-3">What is Common Room?</h3>
-            <p className="text-sm text-purple-100 leading-relaxed">
+            <p className="text-sm text-gray-700 leading-relaxed">
               A student-driven platform where stories, memories, opportunities, projects, startups, 
               discussions, and annual yearbooks live together. We're preserving college life, one story at a time.
             </p>
@@ -102,62 +102,62 @@ export default function ContactPage() {
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          className="p-12 md:p-16 flex flex-col justify-center bg-gray-50"
+          className="p-12 md:p-16 flex flex-col justify-center bg-white"
         >
           <h2 className="text-3xl font-bold mb-2">Send us a message</h2>
           <p className="text-gray-600 mb-8">Fill out the form below and we'll get back to you soon.</p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-2">Your Name *</label>
+              <label className="block text-sm font-bold uppercase tracking-wider mb-2">Your Name *</label>
               <input
                 name="name"
                 type="text"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="John Doe"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Email Address *</label>
+              <label className="block text-sm font-bold uppercase tracking-wider mb-2">Email Address *</label>
               <input
                 name="email"
                 type="email"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="john@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">College (Optional)</label>
+              <label className="block text-sm font-bold uppercase tracking-wider mb-2">College (Optional)</label>
               <input
                 name="college"
                 type="text"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="GEC Raipur"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Subject *</label>
+              <label className="block text-sm font-bold uppercase tracking-wider mb-2">Subject *</label>
               <input
                 name="subject"
                 type="text"
                 required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-black  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 placeholder="How can we help?"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Message *</label>
+              <label className="block text-sm font-bold uppercase tracking-wider mb-2">Message *</label>
               <textarea
                 name="message"
                 required
                 rows={5}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border-2 border-black  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none"
                 placeholder="Tell us what's on your mind..."
               />
             </div>
@@ -165,7 +165,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={sending}
-              className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full py-4 bg-black text-white border-3 border-black  font-bold hover-lift uppercase tracking-wide disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {sending ? (
                 "Sending..."

@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, Award, ChevronRight } from "lucide-react";
+import { Award, ArrowRight } from "lucide-react";
 import { Suspense } from "react";
 import { canAccessSuccess, allowSurveyAccess } from "@/lib/sessionGuard";
 import { useRouteProtection } from "@/hooks/useRouteProtection";
@@ -22,94 +22,80 @@ function SuccessContent() {
       : "";
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center px-4 py-20">
-      <div className="max-w-2xl w-full">
+    <main className="min-h-screen bg-[#faf8f3] flex items-center justify-center px-4 py-20">
+      <div className="max-w-3xl w-full">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-white rounded-2xl p-8 md:p-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Confetti Effect */}
+          {/* Celebration */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="text-6xl mb-6"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="text-8xl mb-8 text-center"
           >
             🎉
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h1 className="text-4xl font-bold mb-4">You're on the Waitlist!</h1>
-            
-            <div className="bg-purple-50 rounded-lg p-6 mb-8 border-2 border-purple-200">
-              <div className="text-sm text-purple-600 font-medium mb-2">Your Position</div>
-              <div className="text-5xl font-bold text-purple-600">#{position}</div>
+          {/* Main Card */}
+          <div className="bg-white border-3 border-black p-10 md:p-12 brutalist-border mb-6">
+            <div className="text-center mb-8">
+              <h1 className="text-5xl md:text-6xl font-black mb-4">You're In!</h1>
+              <p className="text-xl text-gray-700">Welcome to the founding community</p>
             </div>
 
-            <p className="text-gray-600 mb-8">
-              We'll notify you as soon as Common Room launches. Check your email for updates!
+            {/* Position Badge */}
+            <div className="bg-purple-100 border-2 border-black p-8 mb-8 text-center">
+              <div className="text-xs font-bold uppercase tracking-wider mb-2 text-gray-600">Your Position</div>
+              <div className="text-7xl font-black">#{position}</div>
+            </div>
+
+            <p className="text-center text-gray-700 mb-8 text-lg">
+              We'll notify you when Common Room launches. Check your email for updates!
             </p>
-          </motion.div>
 
-          {/* Priority Access CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="space-y-4"
-          >
-            <Link
-              href={`/verify${queryString}`}
-              className="block w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
-            >
-              <div className="flex items-center justify-center gap-2">
-                <Award className="w-5 h-5" />
-                <span>Get Priority Access</span>
-                <ChevronRight className="w-5 h-5" />
-              </div>
-              <div className="text-sm opacity-90 mt-1">Verify your student status</div>
-            </Link>
+            {/* Next Steps */}
+            <div className="space-y-4">
+              <Link
+                href={`/verify${queryString}`}
+                className="block w-full py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide text-center"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <Award className="w-6 h-6" />
+                  <span>Get Priority Access</span>
+                  <ArrowRight className="w-6 h-6" />
+                </div>
+                <div className="text-sm opacity-80 mt-1 normal-case">Verify your student status</div>
+              </Link>
 
-            <Link
-              href={`/survey?waitlistId=${waitlistId || position}&email=${encodeURIComponent(email || "")}`}
-              onClick={() => allowSurveyAccess()}
-              className="block w-full py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex items-center justify-center gap-2">
-                <span>Help Us Decide What to Build First</span>
-                <ChevronRight className="w-5 h-5" />
-              </div>
-              <div className="text-sm text-gray-500 mt-1">Takes 2 minutes</div>
-            </Link>
-          </motion.div>
+              <Link
+                href={`/survey?waitlistId=${waitlistId || position}&email=${encodeURIComponent(email || "")}`}
+                onClick={() => allowSurveyAccess()}
+                className="block w-full py-5 bg-white text-black border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide text-center"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <span>Help Us Build</span>
+                  <ArrowRight className="w-6 h-6" />
+                </div>
+                <div className="text-sm opacity-60 mt-1 normal-case">Shape what we build first (2 min)</div>
+              </Link>
+            </div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-            className="mt-8 pt-8 border-t-2 border-gray-200"
-          >
-            <div className="text-sm text-gray-500 mb-2">Estimated Launch</div>
-            <div className="text-2xl font-bold text-purple-600">August 2026</div>
-          </motion.div>
+          {/* Launch Info */}
+          <div className="bg-yellow-100 border-2 border-black p-6 brutalist-border-sm mb-6 text-center">
+            <div className="text-sm font-bold uppercase tracking-wider mb-1">Estimated Launch</div>
+            <div className="text-3xl font-black">August 2026</div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className="mt-8"
-          >
-            <Link href="/" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+          {/* Back Link */}
+          <div className="text-center">
+            <Link href="/" className="text-black hover:underline font-bold">
               ← Back to Home
             </Link>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </main>
@@ -118,7 +104,7 @@ function SuccessContent() {
 
 export default function SuccessPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center"><div className="text-white text-xl">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#faf8f3] flex items-center justify-center"><div className="text-xl font-bold">Loading...</div></div>}>
       <SuccessContent />
     </Suspense>
   );
