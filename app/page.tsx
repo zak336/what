@@ -17,3 +17,8 @@ export default function Home() {
     </main>
   );
 }
+
+// todo: predefined budget - then openly contributing to the goal
+//       personal server discord like (maintained by Common Rooms)
+//        best for clubs societies etc.
+// keezaboard integrate
