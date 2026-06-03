@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const features = [
   {
@@ -112,13 +113,19 @@ export default function NewFeatures() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-block bg-white border-2 border-black p-6 max-w-2xl brutalist-border-sm">
+          <div className="inline-block bg-white border-2 border-black p-6 max-w-2xl brutalist-border-sm mb-6">
             <p className="text-lg font-semibold mb-2">
               Built by students who got tired of watching memories disappear.
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-600 mb-4">
               No corporate BS. No data selling. Just a place for our stories to live.
             </p>
+            <Link
+              href="/guides/how-common-room-stays-alive"
+              className="inline-block px-6 py-3 bg-black text-white font-bold hover-lift uppercase text-sm"
+            >
+              Read Manifesto →
+            </Link>
           </div>
         </motion.div>
       </div>
