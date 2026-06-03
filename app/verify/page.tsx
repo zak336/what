@@ -7,10 +7,13 @@ import { motion } from "framer-motion";
 import { Upload, CheckCircle, Shield, Award, Users, X } from "lucide-react";
 import { validateFile } from "@/lib/validation";
 import { Suspense } from "react";
+import { canAccessVerify, allowSurveyAccess } from "@/lib/sessionGuard";
+import { useRouteProtection } from "@/hooks/useRouteProtection";
 
 export const dynamic = 'force-dynamic';
 
 function VerifyContent() {
+  useRouteProtection(canAccessVerify);
   const router = useRouter();
   const searchParams = useSearchParams();
   const waitlistId = searchParams.get("waitlistId") || "";
@@ -83,6 +86,7 @@ function VerifyContent() {
       const result = await response.json();
 
       if (result.success) {
+        allowSurveyAccess();
         router.push(`/survey?waitlistId=${waitlistId}&email=${encodeURIComponent(email)}`);
       } else {
         alert(result.message || "Upload failed");
@@ -95,6 +99,7 @@ function VerifyContent() {
   };
 
   const handleSkip = () => {
+    allowSurveyAccess();
     if (waitlistId && email) {
       router.push(`/survey?waitlistId=${waitlistId}&email=${encodeURIComponent(email)}`);
     } else {

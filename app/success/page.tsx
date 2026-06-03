@@ -5,10 +5,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Award, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
+import { canAccessSuccess, allowSurveyAccess } from "@/lib/sessionGuard";
+import { useRouteProtection } from "@/hooks/useRouteProtection";
 
 export const dynamic = 'force-dynamic';
 
 function SuccessContent() {
+  useRouteProtection(canAccessSuccess);
   const searchParams = useSearchParams();
   const position = searchParams.get("position") || "XX";
   const waitlistId = searchParams.get("waitlistId");
@@ -76,6 +79,7 @@ function SuccessContent() {
 
             <Link
               href={`/survey?waitlistId=${waitlistId || position}&email=${encodeURIComponent(email || "")}`}
+              onClick={() => allowSurveyAccess()}
               className="block w-full py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
             >
               <div className="flex items-center justify-center gap-2">

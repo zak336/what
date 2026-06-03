@@ -8,6 +8,7 @@ import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { CHHATTISGARH_COLLEGES } from "@/lib/colleges";
 import CollegeSelector from "./CollegeSelector";
+import { storeWaitlistData } from "@/lib/sessionGuard";
 
 const gecSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -81,10 +82,13 @@ export default function WaitlistForm() {
       console.log("API result:", result);
       
       if (response.ok && result.success) {
-        if (typeof window !== "undefined") {
-          if (result.waitlistId) localStorage.setItem("waitlistId", result.waitlistId);
-          if (payload.email) localStorage.setItem("waitlistEmail", payload.email);
-        }
+        // Store session data
+        storeWaitlistData({
+          waitlistId: result.waitlistId,
+          email: payload.email,
+          college: payload.collegeName,
+        });
+        
         const params = new URLSearchParams({
           position: String(result.position || "XX"),
         });

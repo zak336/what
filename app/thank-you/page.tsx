@@ -3,8 +3,17 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Home, Share2 } from "lucide-react";
+import { canAccessThankYou, cleanupOnboardingFlags } from "@/lib/sessionGuard";
+import { useRouteProtection } from "@/hooks/useRouteProtection";
+import { useEffect } from "react";
 
 export default function ThankYouPage() {
+  useRouteProtection(canAccessThankYou);
+  
+  useEffect(() => {
+    // Cleanup onboarding flags but keep user data
+    cleanupOnboardingFlags();
+  }, []);
   const shareText = "I just joined the waitlist for Common Room - The Living Archive of College Life! 🎓";
 
   const handleShare = () => {

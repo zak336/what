@@ -6,6 +6,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Suspense } from "react";
+import { canAccessSurvey, markSurveyCompleted } from "@/lib/sessionGuard";
+import { useRouteProtection } from "@/hooks/useRouteProtection";
 
 export const dynamic = 'force-dynamic';
 
@@ -19,6 +21,7 @@ type SurveyData = {
 };
 
 function SurveyContent() {
+  useRouteProtection(canAccessSurvey);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitError, setSubmitError] = useState("");
@@ -73,6 +76,7 @@ function SurveyContent() {
       console.log("API response:", result);
 
       if (response.ok && result.success) {
+        markSurveyCompleted();
         router.push("/thank-you");
       } else {
         setSubmitError(result.message || "Survey submission failed. Please try again.");
@@ -271,7 +275,10 @@ function SurveyContent() {
               
               <button
                 type="button"
-                onClick={() => router.push("/thank-you")}
+                onClick={() => {
+                  markSurveyCompleted();
+                  router.push("/thank-you");
+                }}
                 className="w-full mt-3 py-3 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
               >
                 Skip Survey
