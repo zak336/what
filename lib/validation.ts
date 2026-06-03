@@ -1,7 +1,7 @@
 // File validation utilities
 
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/jpg", "image/png", "application/pdf"];
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB (Vercel limit is 4.5MB, staying safe)
 
 export function validateFile(file: File): { valid: boolean; error?: string } {
   // Check file type
@@ -16,7 +16,7 @@ export function validateFile(file: File): { valid: boolean; error?: string } {
   if (file.size > MAX_FILE_SIZE) {
     return {
       valid: false,
-      error: "File size exceeds 10MB limit.",
+      error: `File size exceeds 3MB limit. Current size: ${(file.size / 1024 / 1024).toFixed(2)}MB`,
     };
   }
 

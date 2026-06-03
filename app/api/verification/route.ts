@@ -2,6 +2,18 @@ import { NextResponse } from "next/server";
 import { submitVerification } from "@/services/verification.service";
 import { validateFile } from "@/lib/validation";
 
+export const maxDuration = 60; // 60 seconds timeout
+export const dynamic = 'force-dynamic';
+
+// Vercel body size limit configuration
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '4mb', // Vercel limit is 4.5MB, keeping safe margin
+    },
+  },
+};
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();

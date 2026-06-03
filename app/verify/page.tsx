@@ -179,7 +179,7 @@ function VerifyContent() {
                     Choose File
                     <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleChange} className="hidden" />
                   </label>
-                  <p className="text-xs text-gray-500 mt-4">JPG, PNG, or PDF • Max 10MB</p>
+                  <p className="text-xs text-gray-500 mt-4">JPG, PNG, or PDF • Max 3MB</p>
                 </>
               )}
             </div>
