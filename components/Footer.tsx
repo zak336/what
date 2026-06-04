@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <h3 className="text-3xl font-black mb-3">Common Room</h3>
+            <h3 className="text-3xl font-black mb-3 common-room-wordmark">Common Room</h3>
             <p className="text-gray-400">
               The Living Archive of College Life.<br />Built by students, for students.
             </p>

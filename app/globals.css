@@ -44,6 +44,17 @@ body {
   display: inline-block;
 }
 
+/* Brand Typography - Handwritten */
+.brand-logo,
+.common-room-wordmark,
+.brand-signature {
+  font-family: var(--font-caveat);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
 .handwritten {
-  font-family: 'Comic Sans MS', cursive;
+  font-family: var(--font-caveat);
+  font-weight: 600;
 }

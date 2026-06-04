@@ -81,8 +81,7 @@ export default function NewHero() {
 
           {/* Main Headline */}
           <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none">
-            <span className="block">Common</span>
-            <span className="block text-blue-600">Room</span>
+            <span className="block common-room-wordmark text-7xl md:text-9xl">Common Room</span>
           </h1>
 
           {/* Tagline */}

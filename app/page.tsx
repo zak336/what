@@ -1,6 +1,7 @@
 import NewHero from "@/components/NewHero";
 import YearbookSection from "@/components/YearbookSection";
 import NewFeatures from "@/components/NewFeatures";
+import WhoKeepsThisAlive from "@/components/WhoKeepsThisAlive";
 import NewSocialProof from "@/components/NewSocialProof";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
@@ -11,6 +12,7 @@ export default function Home() {
       <NewHero />
       <YearbookSection />
       <NewFeatures />
+      <WhoKeepsThisAlive />
       <NewSocialProof />
       <WaitlistForm />
       <Footer />
