@@ -1,5 +1,4 @@
 import NewHero from "@/components/NewHero";
-import YearbookSection from "@/components/YearbookSection";
 import NewFeatures from "@/components/NewFeatures";
 import WhoKeepsThisAlive from "@/components/WhoKeepsThisAlive";
 import NewSocialProof from "@/components/NewSocialProof";
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <NewHero />
-      <YearbookSection />
       <NewFeatures />
       <WhoKeepsThisAlive />
       <NewSocialProof />

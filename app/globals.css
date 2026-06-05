@@ -1,45 +1,52 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #faf8f3;
-  --color-paper: #f5f1e8;
-  --color-ink: #1a1a1a;
-  --color-blue: #2563eb;
-  --color-orange: #ea580c;
-  --color-green: #059669;
-  --color-purple: #7c3aed;
-  --color-red: #dc2626;
+  --color-navy: #0B0661;
+  --color-blue: #5C84FF;
+  --color-pink: #FF6BD6;
+  --color-paper: #F7F7F4;
+  --color-grid: #E8E8E5;
+  --color-lavender: #E8E5FF;
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background: var(--color-paper);
+  color: var(--color-navy);
+}
+
+/* Grid Paper Background */
+.grid-paper {
+  background-color: var(--color-paper);
+  background-image: 
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 .brutalist-border {
-  border: 3px solid var(--color-ink);
-  box-shadow: 6px 6px 0px var(--color-ink);
+  border: 3px solid var(--color-navy);
+  box-shadow: 6px 6px 0px var(--color-navy);
 }
 
 .brutalist-border-sm {
-  border: 2px solid var(--color-ink);
-  box-shadow: 3px 3px 0px var(--color-ink);
+  border: 2px solid var(--color-navy);
+  box-shadow: 3px 3px 0px var(--color-navy);
 }
 
 .hover-lift {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hover-lift:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0px var(--color-ink);
+  box-shadow: 8px 8px 0px var(--color-navy);
 }
 
 .stamp {
   transform: rotate(-5deg);
-  border: 2px dashed var(--color-ink);
+  border: 2px dashed var(--color-navy);
   padding: 0.5rem 1rem;
   display: inline-block;
 }
@@ -57,4 +64,18 @@ body {
 .handwritten {
   font-family: var(--font-caveat);
   font-weight: 600;
+}
+
+/* Yearbook Aesthetics */
+.yearbook-stamp {
+  background: var(--color-pink);
+  border: 2px dashed var(--color-navy);
+  transform: rotate(-3deg);
+  box-shadow: 4px 4px 0px var(--color-navy);
+}
+
+.notice-board {
+  background: white;
+  border: 2px solid var(--color-navy);
+  box-shadow: 4px 4px 0px var(--color-navy);
 }

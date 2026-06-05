@@ -105,15 +105,35 @@ export default function WaitlistForm() {
   };
 
   if (!selectedType) {
-    return <CollegeSelector onSelect={setSelectedType} />;
+    return (
+      <section id="waitlist-form" className="py-20 px-4 grid-paper">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-12 text-center"
+          >
+            <div className="inline-block border-2 border-[#0B0661] px-4 py-1 mb-4 bg-white shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Join Waitlist</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black mb-4 text-[#0B0661]">Join Common Room</h2>
+            <p className="text-2xl font-bold text-gray-700">Built for <span className="text-[#5C84FF]">every college</span></p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <CollegeSelector onSelect={setSelectedType} />
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
-    <section id="waitlist-form" className="py-20 px-4 bg-[#faf8f3]">
+    <section id="waitlist-form" className="py-20 px-4 grid-paper">
       <div className="max-w-2xl mx-auto">
         <button
           onClick={() => setSelectedType(null)}
-          className="text-black hover:underline mb-6 font-bold flex items-center gap-2"
+          className="text-[#0B0661] hover:text-[#5C84FF] mb-6 font-bold flex items-center gap-2 transition-colors"
         >
           ← Change College Type
         </button>
@@ -128,14 +148,14 @@ export default function WaitlistForm() {
           </div>
           <h2 className="text-4xl md:text-5xl font-black mb-4">Claim Your Spot</h2>
           {selectedType === "other" && (
-            <div className="bg-yellow-100 border-2 border-black p-6 mb-4 brutalist-border-sm">
-              <p className="font-bold mb-2">
-                🚀 Common Room is launching first at GEC Raipur.
+            <div className="bg-[#E8E5FF] border-2 border-[#0B0661] p-6 mb-4 brutalist-border-sm">
+              <p className="font-bold mb-2 text-[#0B0661]">
+                📚 Your college will get its own Common Room
               </p>
-              <p className="text-sm mb-2">
-                Students from other colleges can join the waitlist and will be notified when their campus becomes available.
+              <p className="text-sm mb-2 text-gray-700">
+                Join the waitlist to be notified when we launch at your campus. Every college gets its own yearbook, stories, and community.
               </p>
-              <p className="text-sm font-semibold">
+              <p className="text-sm font-semibold text-[#5C84FF]">
                 💡 More students = Faster launch
               </p>
             </div>

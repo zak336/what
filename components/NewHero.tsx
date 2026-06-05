@@ -20,13 +20,7 @@ export default function NewHero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden bg-[#faf8f3]">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-black"></div>
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden grid-paper">
       {/* Floating Micro Content */}
       {microContent.map((card, index) => (
         <motion.div
@@ -44,16 +38,16 @@ export default function NewHero() {
           onHoverStart={() => setActiveCard(index)}
           onHoverEnd={() => setActiveCard(null)}
         >
-          <div className="bg-white border-2 border-black p-4 max-w-[200px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-            <div className="text-xs font-bold uppercase tracking-wider mb-1 text-gray-500">
+          <div className="notice-board p-4 max-w-[200px]">
+            <div className="text-xs font-bold uppercase tracking-wider mb-1 text-[#0B0661]">
               {card.type}
             </div>
-            <div className="font-semibold text-sm mb-1">{card.text}</div>
+            <div className="font-semibold text-sm mb-1 text-[#0B0661]">{card.text}</div>
             {'subtitle' in card && <div className="text-xs text-gray-600">{card.subtitle}</div>}
-            {'votes' in card && <div className="text-xs text-blue-600">{card.votes}</div>}
-            {'company' in card && <div className="text-xs text-orange-600">{card.company}</div>}
-            {'status' in card && <div className="text-xs text-green-600">{card.status}</div>}
-            {'interested' in card && <div className="text-xs text-purple-600">{card.interested}</div>}
+            {'votes' in card && <div className="text-xs text-[#5C84FF]">{card.votes}</div>}
+            {'company' in card && <div className="text-xs text-[#FF6BD6]">{card.company}</div>}
+            {'status' in card && <div className="text-xs text-[#5C84FF]">{card.status}</div>}
+            {'interested' in card && <div className="text-xs text-[#5C84FF]">{card.interested}</div>}
           </div>
         </motion.div>
       ))}
@@ -72,22 +66,24 @@ export default function NewHero() {
             transition={{ duration: 3, repeat: Infinity }}
             className="inline-block mb-8"
           >
-            <div className="border-2 border-dashed border-black px-6 py-2 rotate-[-2deg] bg-yellow-100">
-              <span className="text-sm font-bold uppercase tracking-wider">
+            <div className="yearbook-stamp px-6 py-2">
+              <span className="text-sm font-bold uppercase tracking-wider text-[#0B0661]">
                 ⚡ Pre-Launch • Building in Public
               </span>
             </div>
           </motion.div>
 
           {/* Main Headline */}
-          <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none">
-            <span className="block common-room-wordmark text-7xl md:text-9xl">Common Room</span>
+          <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none text-[#0B0661]">
+            <span className="block common-room-wordmark text-7xl md:text-9xl">
+              Common <span className="text-[#5380fe]">Room</span>
+            </span>
           </h1>
 
           {/* Tagline */}
           <div className="mb-8">
-            <p className="text-2xl md:text-4xl font-bold mb-4">
-              The Living Archive of College Life
+            <p className="text-2xl md:text-4xl font-bold mb-4 text-[#0B0661]">
+              The Living Archive of <span className="text-[#5C84FF]">College Life</span>
             </p>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Stories, projects, opportunities, confessions, memories, and annual digital yearbooks — built by students, for students.
@@ -99,12 +95,12 @@ export default function NewHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white border-3 border-black p-8 mb-10 max-w-2xl mx-auto brutalist-border hover-lift"
+            className="bg-white border-3 border-[#0B0661] p-8 mb-10 max-w-2xl mx-auto brutalist-border hover-lift"
           >
             <div className="text-5xl mb-3">📚</div>
-            <h2 className="text-2xl font-bold mb-3">Annual Digital Yearbook</h2>
+            <h2 className="text-2xl font-bold mb-3 text-[#0B0661]">Annual Digital Yearbook</h2>
             <p className="text-gray-700">
-              Years later, this is where your memories will live. Photos, farewell messages, achievements, and stories preserved forever.
+              Years later, this is where your memories will live. Photos, farewell messages, achievements, and stories <span className="text-[#5C84FF] font-semibold">preserved forever</span>.
             </p>
           </motion.div>
 
@@ -112,13 +108,13 @@ export default function NewHero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button
               onClick={scrollToForm}
-              className="px-10 py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide"
+              className="px-10 py-5 bg-[#0B0661] text-white border-3 border-[#0B0661] font-bold text-lg hover:bg-[#5C84FF] transition-colors uppercase tracking-wide shadow-[6px_6px_0px_0px_rgba(11,6,97,1)] hover:shadow-[8px_8px_0px_0px_rgba(92,132,255,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               Join the Waitlist
             </button>
             <button
               onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-10 py-5 bg-white text-black border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide"
+              className="px-10 py-5 bg-white text-[#0B0661] border-3 border-[#0B0661] font-bold text-lg hover:text-[#5C84FF] hover:border-[#5C84FF] transition-colors uppercase tracking-wide shadow-[6px_6px_0px_0px_rgba(11,6,97,1)] hover:shadow-[8px_8px_0px_0px_rgba(92,132,255,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               What's Inside
             </button>

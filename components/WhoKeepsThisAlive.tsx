@@ -107,7 +107,7 @@ export default function WhoKeepsThisAlive() {
   const active = roles.find((r) => r.id === activeRole) || roles[1];
 
   return (
-    <section className="py-24 px-4 bg-[#faf8f3]">
+    <section className="py-24 px-4 grid-paper">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -116,14 +116,14 @@ export default function WhoKeepsThisAlive() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-block border-2 border-black px-4 py-1 mb-6 bg-yellow-100">
-            <span className="text-xs font-bold uppercase tracking-wider">The Truth</span>
+          <div className="inline-block border-2 border-[#0B0661] px-4 py-1 mb-6 bg-[#FF6BD6] shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">The Truth</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight text-[#0B0661]">
             What Happens When<br />Students Care
           </h2>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Common Room doesn't survive because software exists. It survives because students contribute.
+            Common Room doesn't survive because software exists. It survives because <span className="text-[#5C84FF] font-semibold">students contribute</span>.
           </p>
         </motion.div>
 
@@ -136,14 +136,14 @@ export default function WhoKeepsThisAlive() {
         >
           {/* Left Column: Role Accordion */}
           <div className="space-y-3">
-            <h3 className="text-2xl font-black mb-6 uppercase tracking-tight">
+            <h3 className="text-2xl font-black mb-6 uppercase tracking-tight text-[#0B0661]">
               Select a Role
             </h3>
             {roles.map((role) => (
               <motion.button
                 key={role.id}
                 onClick={() => setActiveRole(role.id)}
-                className={`w-full text-left border-2 border-black p-5 transition-all ${
+                className={`w-full text-left border-2 border-[#0B0661] p-5 transition-all ${
                   activeRole === role.id
                     ? `${role.color} brutalist-border-sm`
                     : 'bg-white hover-lift'
@@ -153,10 +153,10 @@ export default function WhoKeepsThisAlive() {
                 <div className="flex items-start gap-4">
                   <span className="text-3xl">{role.icon}</span>
                   <div className="flex-1">
-                    <h4 className="text-lg font-black mb-1">{role.role}</h4>
+                    <h4 className="text-lg font-black mb-1 text-[#0B0661]">{role.role}</h4>
                     <p className="text-sm text-gray-700">{role.desc}</p>
                   </div>
-                  <div className={`text-2xl transition-transform ${
+                  <div className={`text-2xl transition-transform text-[#0B0661] ${
                     activeRole === role.id ? 'rotate-90' : ''
                   }`}>
                     →
@@ -178,7 +178,7 @@ export default function WhoKeepsThisAlive() {
                 className="space-y-6"
               >
                 {/* Without Section */}
-                <div className="bg-gray-100 border-2 border-black p-6">
+                <div className="bg-gray-100 border-2 border-[#0B0661] p-6 shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-2xl opacity-50">❌</span>
                     <h4 className="text-xl font-black text-red-600">Without {active.role}s</h4>
@@ -200,7 +200,7 @@ export default function WhoKeepsThisAlive() {
                 </div>
 
                 {/* With Section */}
-                <div className="bg-green-100 border-2 border-black p-6">
+                <div className="bg-green-100 border-2 border-[#0B0661] p-6 shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-2xl">✅</span>
                     <h4 className="text-xl font-black text-green-600">With {active.role}s</h4>
@@ -268,8 +268,8 @@ export default function WhoKeepsThisAlive() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-yellow-100 border-2 border-black p-8 max-w-3xl mx-auto brutalist-border-sm mb-8">
-            <h3 className="text-2xl font-black mb-4 handwritten text-3xl">
+          <div className="bg-white border-2 border-[#0B0661] p-8 max-w-3xl mx-auto brutalist-border-sm mb-8">
+            <h3 className="text-2xl font-black mb-4 handwritten text-3xl text-[#0B0661]">
               Built by students who got tired of watching memories disappear.
             </h3>
             <p className="text-lg text-gray-700 mb-6">
@@ -280,7 +280,7 @@ export default function WhoKeepsThisAlive() {
           <p className="text-gray-600 mb-4 text-lg">Want to understand the full story?</p>
           <Link
             href="/guides/how-common-room-stays-alive"
-            className="inline-block px-8 py-4 bg-black text-white border-3 border-black font-bold hover-lift uppercase tracking-wide"
+            className="inline-block px-8 py-4 bg-[#0B0661] text-white border-3 border-[#0B0661] font-bold hover:bg-[#5C84FF] transition-colors uppercase tracking-wide shadow-[6px_6px_0px_0px_rgba(11,6,97,1)]"
           >
             Read Our Manifesto →
           </Link>

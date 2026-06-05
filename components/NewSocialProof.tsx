@@ -30,7 +30,7 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 
 export default function NewSocialProof() {
   return (
-    <section className="py-20 px-4 bg-[#faf8f3]">
+    <section className="py-20 px-4 grid-paper">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,10 @@ export default function NewSocialProof() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
+          <div className="inline-block border-2 border-[#0B0661] px-4 py-1 mb-4 bg-white shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Social Proof</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black mb-4 text-[#0B0661]">
             The Movement is Growing
           </h2>
           <p className="text-gray-600 text-lg">
@@ -58,9 +61,9 @@ export default function NewSocialProof() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white border-2 border-black p-8 text-center brutalist-border hover-lift"
+              className="bg-white border-2 border-[#0B0661] p-8 text-center brutalist-border hover-lift"
             >
-              <div className="text-5xl font-black mb-2">
+              <div className="text-5xl font-black mb-2 text-[#0B0661]">
                 <AnimatedCounter target={stat.number} suffix={stat.suffix} />
               </div>
               <div className="text-sm uppercase tracking-wider font-bold text-gray-600">
@@ -76,24 +79,24 @@ export default function NewSocialProof() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-blue-50 border-2 border-black p-6 brutalist-border-sm"
+            className="bg-[#E8E5FF] border-2 border-[#0B0661] p-6 brutalist-border-sm"
           >
-            <p className="text-lg mb-4 italic">
+            <p className="text-lg mb-4 italic text-[#0B0661]">
               "Finally something that feels like it's actually made for us, not some corporate thing."
             </p>
-            <div className="font-bold">— Anonymous Student, GEC Raipur</div>
+            <div className="font-bold text-gray-700">— Anonymous Student, GEC Raipur</div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-yellow-50 border-2 border-black p-6 brutalist-border-sm"
+            className="bg-white border-2 border-[#0B0661] p-6 brutalist-border-sm"
           >
-            <p className="text-lg mb-4 italic">
+            <p className="text-lg mb-4 italic text-[#0B0661]">
               "I wish we had this when I graduated. Our memories are scattered everywhere."
             </p>
-            <div className="font-bold">— Alumni, Batch 2023</div>
+            <div className="font-bold text-gray-700">— Alumni, Batch 2023</div>
           </motion.div>
         </div>
       </div>
