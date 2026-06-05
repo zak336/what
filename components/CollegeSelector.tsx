@@ -40,67 +40,27 @@ export default function CollegeSelector({ onSelect }: Props) {
         </button>
       </motion.div>
 
-      {/* Permanent Archive Seal - Authentic Stamp */}
+      {/* Permanent Archive Seal - Image */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -8 }}
-        animate={{ opacity: 0.85, scale: 1, rotate: 5 }}
-        transition={{ delay: 0.3 }}
-        className="relative"
-        style={{ 
-          filter: 'contrast(1.1)',
-        }}
+        initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
+        animate={{ opacity: 0.88, scale: 1, rotate: -7 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="relative -mr-8"
+        style={{ filter: 'contrast(1.15) brightness(0.98)' }}
       >
-        <div className="relative w-64 h-64 mx-auto flex items-center justify-center">
-          {/* Outer Ring - Archive Text */}
-          <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-[#0B0661] opacity-90"></div>
-          <div className="absolute inset-1 rounded-full border-[2px] border-[#0B0661] opacity-85"></div>
-          
-          {/* Middle Ring */}
-          <div className="absolute inset-6 rounded-full border-[3px] border-dashed border-[#FF6BD6] opacity-90"></div>
-          <div className="absolute inset-7 rounded-full border-[2px] border-[#FF6BD6] opacity-85"></div>
-          
-          {/* Inner Ring */}
-          <div className="absolute inset-12 rounded-full border-[2px] border-[#0B0661] opacity-80"></div>
-          
-          {/* Stamp Content */}
-          <div className="relative z-10 px-6 text-center">
-            {/* Top Arc Text */}
-            <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48">
-              <p className="text-[9px] font-black uppercase tracking-[0.15em] text-[#0B0661] text-center">
-                COMMON ROOM ARCHIVE
-              </p>
-            </div>
-            
-            {/* Center - Main Message */}
-            <h3 className="text-2xl font-black handwritten text-[#FF6BD6] mb-2 leading-none mt-2">
-              Forever<br/>Preserved
-            </h3>
-            
-            {/* Content List */}
-            <div className="space-y-0.5 text-[10px] font-bold text-[#0B0661] leading-tight">
-              <p>Stories · Memories</p>
-              <p>Photos · Yearbooks</p>
-            </div>
-            
-            {/* Bottom Arc Text */}
-            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-48">
-              <p className="text-[9px] font-black uppercase tracking-[0.15em] text-[#0B0661] text-center">
-                EST. 2025
-              </p>
-            </div>
-          </div>
-          
-          {/* Distressed edges effect */}
-          <div className="absolute inset-0 rounded-full" style={{
-            background: `radial-gradient(circle at 30% 40%, transparent 45%, rgba(11, 6, 97, 0.03) 46%, transparent 47%),
-                        radial-gradient(circle at 70% 60%, transparent 45%, rgba(255, 107, 214, 0.03) 46%, transparent 47%),
-                        radial-gradient(circle at 50% 80%, transparent 45%, rgba(11, 6, 97, 0.02) 46%, transparent 47%)`
-          }}></div>
-        </div>
+        <img
+          src="/SEAL COMMONROOMS.png"
+          alt="Common Room Archive Seal"
+          className="w-72 h-72 mx-auto"
+          style={{ opacity: 0.88 }}
+        />
         
-        {/* Ink splatter effect */}
-        <div className="absolute top-2 right-4 w-2 h-2 bg-[#FF6BD6] rounded-full opacity-20"></div>
-        <div className="absolute bottom-8 left-6 w-1.5 h-1.5 bg-[#0B0661] rounded-full opacity-15"></div>
+        {/* Texture overlay for ink effect */}
+        <div className="absolute inset-0 rounded-full opacity-5 pointer-events-none" style={{
+          background: `radial-gradient(circle at 25% 30%, rgba(11, 6, 97, 0.4) 0%, transparent 3%),
+                      radial-gradient(circle at 75% 45%, rgba(255, 107, 214, 0.3) 0%, transparent 2%),
+                      radial-gradient(circle at 40% 70%, rgba(11, 6, 97, 0.3) 0%, transparent 2.5%)`
+        }}></div>
       </motion.div>
     </>
   );
