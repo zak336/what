@@ -2,8 +2,9 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Award, ArrowRight } from "lucide-react";
+import { Home, Share2, BookOpen, Lock, Rocket, MessageSquare, Users, Shield, ArrowRight } from "lucide-react";
 import { Suspense } from "react";
 import { canAccessSuccess, allowSurveyAccess } from "@/lib/sessionGuard";
 import { useRouteProtection } from "@/hooks/useRouteProtection";
@@ -22,77 +23,52 @@ function SuccessContent() {
       : "";
 
   return (
-    <main className="min-h-screen bg-[#faf8f3] flex items-center justify-center px-4 py-20">
-      <div className="max-w-3xl w-full">
+    <main className="min-h-screen grid-paper flex items-center justify-center px-4 py-20">
+      <div className="max-w-2xl w-full">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          {/* Celebration */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="text-8xl mb-8 text-center"
-          >
-            🎉
-          </motion.div>
-
-          {/* Main Card */}
-          <div className="bg-white border-3 border-black p-10 md:p-12 brutalist-border mb-6">
+          <div className="bg-white border-2 border-[#0B0661] p-10 md:p-12 shadow-[6px_6px_0px_0px_rgba(11,6,97,1)]">
             <div className="text-center mb-8">
-              <h1 className="text-5xl md:text-6xl font-black mb-4">You're In!</h1>
-              <p className="text-xl text-gray-700">Welcome to the founding community</p>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring" }}
+                className="text-6xl mb-6"
+              >
+                🎉
+              </motion.div>
+              
+              <div className="inline-block px-4 py-1 border-2 border-[#0B0661] bg-[#FF6BD6] mb-6 shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Waitlist #{position}</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-black mb-4 text-[#0B0661]">You're In!</h1>
+              <p className="text-xl text-gray-700 mb-6">Welcome to the Common Room founding community</p>
+              <p className="text-lg text-gray-700">
+                We'll notify you when Common Room launches. Check your email for updates!
+              </p>
             </div>
 
-            {/* Position Badge */}
-            <div className="bg-purple-100 border-2 border-black p-8 mb-8 text-center">
-              <div className="text-xs font-bold uppercase tracking-wider mb-2 text-gray-600">Your Position</div>
-              <div className="text-7xl font-black">#{position}</div>
+            <div className="bg-[#FFF4E6] border-2 border-[#0B0661] p-6 mb-8 text-center">
+              <div className="text-sm font-bold uppercase tracking-wider mb-1 text-[#0B0661]">Estimated Launch</div>
+              <div className="text-3xl font-black text-[#0B0661]">August 2026</div>
             </div>
 
-            <p className="text-center text-gray-700 mb-8 text-lg">
-              We'll notify you when Common Room launches. Check your email for updates!
-            </p>
-
-            {/* Next Steps */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Link
-                href={`/verify${queryString}`}
-                className="block w-full py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide text-center"
+                href="/"
+                className="block w-full py-5 bg-[#0B0661] text-white border-2 border-[#0B0661] font-bold text-lg hover:bg-[#5C84FF] transition-colors uppercase tracking-wide text-center shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
               >
-                <div className="flex items-center justify-center gap-3">
-                  <Award className="w-6 h-6" />
-                  <span>Get Priority Access</span>
-                  <ArrowRight className="w-6 h-6" />
-                </div>
-                <div className="text-sm opacity-80 mt-1 normal-case">Verify your student status</div>
-              </Link>
-
-              <Link
-                href={`/survey?waitlistId=${waitlistId || position}&email=${encodeURIComponent(email || "")}`}
-                onClick={() => allowSurveyAccess()}
-                className="block w-full py-5 bg-white text-black border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide text-center"
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <span>Help Us Build</span>
-                  <ArrowRight className="w-6 h-6" />
-                </div>
-                <div className="text-sm opacity-60 mt-1 normal-case">Shape what we build first (2 min)</div>
+                Back to Home
               </Link>
             </div>
           </div>
 
-          {/* Launch Info */}
-          <div className="bg-yellow-100 border-2 border-black p-6 brutalist-border-sm mb-6 text-center">
-            <div className="text-sm font-bold uppercase tracking-wider mb-1">Estimated Launch</div>
-            <div className="text-3xl font-black">August 2026</div>
-          </div>
-
-          {/* Back Link */}
-          <div className="text-center">
-            <Link href="/" className="text-black hover:underline font-bold">
+          <div className="text-center mt-6">
+            <Link href="/" className="text-[#5C84FF] hover:text-[#0B0661] font-bold text-sm">
               ← Back to Home
             </Link>
           </div>

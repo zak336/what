@@ -12,12 +12,13 @@ import { useRouteProtection } from "@/hooks/useRouteProtection";
 export const dynamic = 'force-dynamic';
 
 type SurveyData = {
-  willingToPay: "yes" | "no" | "maybe";
-  pricePoint: string;
+  joinReason: string;
   valuableFeatures: string[];
-  worthPayingFor: string;
-  maxAmount: string;
-  paymentStyle: "monthly" | "yearly" | "both";
+  howHeard: string;
+  joinCommunity: "yes" | "maybe" | "no";
+  preferredPlatform?: string;
+  preserveForFuture: string;
+  worthPayingFor?: string;
 };
 
 function SurveyContent() {
@@ -25,17 +26,48 @@ function SurveyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitError, setSubmitError] = useState("");
-  const { register, handleSubmit, formState: { isSubmitting } } = useForm<SurveyData>();
+  const [showPlatformSelect, setShowPlatformSelect] = useState(false);
+  const { register, handleSubmit, watch, formState: { isSubmitting } } = useForm<SurveyData>();
+
+  const joinCommunity = watch("joinCommunity");
 
   const featureOptions = [
     "Digital Yearbook",
-    "Verified Student Network",
+    "Private Rooms",
+    "Campus Communities",
+    "Stories & Memories",
+    "Opportunities",
+    "Projects & Startups",
     "Alumni Network",
-    "Premium Resources",
-    "Startup Network",
-    "Career Tools",
-    "Opportunity Alerts",
-    "AI Features",
+    "Verified Student Network",
+  ];
+
+  const joinReasonOptions = [
+    "Digital Yearbook",
+    "Private Rooms",
+    "Campus Photos",
+    "Stories & Memories",
+    "Projects & Startups",
+    "Opportunities",
+    "Cross-College Community",
+    "Alumni Network",
+    "Other",
+  ];
+
+  const howHeardOptions = [
+    "WhatsApp",
+    "Friend",
+    "College Group",
+    "Reddit",
+    "Twitter/X",
+    "LinkedIn",
+    "Other",
+  ];
+
+  const platformOptions = [
+    "WhatsApp",
+    "Discord",
+    "Email Only",
   ];
 
   const onSubmit = async (data: SurveyData) => {
@@ -57,11 +89,12 @@ function SurveyContent() {
       const payload = {
         waitlistId,
         email,
-        willingToPay: data.willingToPay,
-        pricePoint: data.pricePoint,
-        maxAmount: data.maxAmount,
-        paymentStyle: data.paymentStyle,
+        joinReason: data.joinReason,
         valuableFeatures: data.valuableFeatures || [],
+        howHeard: data.howHeard,
+        joinCommunity: data.joinCommunity,
+        preferredPlatform: data.preferredPlatform || "",
+        preserveForFuture: data.preserveForFuture || "",
         worthPayingFor: data.worthPayingFor || "",
       };
 
@@ -77,7 +110,10 @@ function SurveyContent() {
 
       if (response.ok && result.success) {
         markSurveyCompleted();
-        router.push("/thank-you");
+        
+        // Redirect to success page with celebration
+        const position = searchParams.get("position") || "XX";
+        router.push(`/success?position=${position}&waitlistId=${waitlistId}&email=${encodeURIComponent(email)}`);
       } else {
         setSubmitError(result.message || "Survey submission failed. Please try again.");
       }
@@ -88,7 +124,7 @@ function SurveyContent() {
   };
 
   return (
-    <main className="min-h-screen bg-[#faf8f3] py-20 px-4">
+    <main className="min-h-screen grid-paper py-20 px-4">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,181 +132,200 @@ function SurveyContent() {
         >
           {/* Header */}
           <div className="mb-12">
-            <div className="inline-block border-2 border-black px-4 py-1 mb-4 bg-white">
-              <span className="text-xs font-bold uppercase tracking-wider">Final Step</span>
+            <div className="inline-block border-2 border-[#0B0661] px-4 py-1 mb-4 bg-[#FF6BD6] shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Almost Done</span>
             </div>
-            <div className="text-6xl mb-4">💭</div>
-            <h1 className="text-5xl md:text-6xl font-black mb-4">Help Us Build</h1>
-            <p className="text-xl text-gray-700 mb-4">
-              Your feedback shapes what we build
+            <h1 className="text-5xl md:text-6xl font-black mb-4 text-[#0B0661]">Help Shape Common Room</h1>
+            <p className="text-xl text-gray-700 mb-4 font-medium">
+              You're on the waitlist! Answer a few quick questions to help us build features students actually want.
             </p>
-            <div className="inline-block px-4 py-2 bg-blue-100 border-2 border-black text-sm font-bold">
-              ℹ️ This survey does not affect your waitlist position
+            <div className="inline-block px-4 py-2 bg-[#E8E5FF] border-2 border-[#0B0661] text-sm font-bold text-[#0B0661]">
+              ⏱ Takes less than 30 seconds
             </div>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            {/* Question 1 */}
+            {/* Question 1: Join Reason */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-white p-6 border-2 border-black"
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
             >
-              <h2 className="text-lg font-bold mb-4">
-                1. Would you be willing to pay for premium access?
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                What made you join Common Room today?
               </h2>
               <div className="space-y-3">
-                {["yes", "no", "maybe"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer">
+                {joinReasonOptions.map((reason) => (
+                  <label key={reason} className="flex items-center gap-3 p-3 border-2 border-[#0B0661] hover:bg-[#E8E5FF] cursor-pointer">
                     <input
                       type="radio"
-                      value={option}
-                      {...register("willingToPay")}
-                      className="w-4 h-4 text-purple-600"
+                      value={reason}
+                      {...register("joinReason")}
+                      className="w-4 h-4 text-[#5C84FF]"
                     />
-                    <span className="capitalize font-medium">{option}</span>
+                    <span className="font-medium text-[#0B0661]">{reason}</span>
                   </label>
                 ))}
               </div>
             </motion.div>
 
-            {/* Question 2 */}
+            {/* Question 2: Valuable Features */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white p-6 border-2 border-black"
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
             >
-              <h2 className="text-lg font-bold mb-4">
-                2. What monthly price feels reasonable?
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {["Free Only", "₹5", "₹10", "₹20", "₹30", "₹50", "₹100+"].map((price) => (
-                  <label key={price} className="flex items-center gap-2 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer text-center">
-                    <input
-                      type="radio"
-                      value={price}
-                      {...register("pricePoint")}
-                      className="w-4 h-4 text-purple-600"
-                    />
-                    <span className="font-medium text-sm">{price}</span>
-                  </label>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Question 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-white p-6 border-2 border-black"
-            >
-              <h2 className="text-lg font-bold mb-4">
-                3. Which features would justify a subscription?
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                Which Common Room features are most valuable to you?
               </h2>
               <p className="text-sm text-gray-600 mb-4">Select all that apply</p>
               <div className="space-y-3">
                 {featureOptions.map((feature) => (
-                  <label key={feature} className="flex items-center gap-3 p-3 border-2 border-black hover:bg-gray-50 cursor-pointer">
+                  <label key={feature} className="flex items-center gap-3 p-3 border-2 border-[#0B0661] hover:bg-[#E8E5FF] cursor-pointer">
                     <input
                       type="checkbox"
                       value={feature}
                       {...register("valuableFeatures")}
-                      className="w-4 h-4 text-purple-600 rounded"
+                      className="w-4 h-4 text-[#5C84FF] rounded"
                     />
-                    <span className="font-medium">{feature}</span>
+                    <span className="font-medium text-[#0B0661]">{feature}</span>
                   </label>
                 ))}
               </div>
             </motion.div>
 
-            {/* Question 4 */}
+            {/* Question 3: How Heard */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
+            >
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                How did you hear about Common Room?
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {howHeardOptions.map((source) => (
+                  <label key={source} className="flex items-center gap-2 p-3 border-2 border-[#0B0661] hover:bg-[#E8E5FF] cursor-pointer justify-center">
+                    <input
+                      type="radio"
+                      value={source}
+                      {...register("howHeard")}
+                      className="w-4 h-4 text-[#5C84FF]"
+                    />
+                    <span className="font-medium text-sm text-[#0B0661]">{source}</span>
+                  </label>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Question 4: Join Community */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="bg-white p-6 border-2 border-black"
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
             >
-              <h2 className="text-lg font-bold mb-4">
-                4. What would make ₹10/month worth paying?
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                Would you like to join the Common Room Early Access Community?
               </h2>
-              <textarea
-                {...register("worthPayingFor")}
-                rows={4}
-                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                placeholder="Tell us what features or benefits would make you consider a paid subscription..."
-              />
+              <div className="space-y-3 mb-4">
+                {[
+                  { value: "yes", label: "Yes" },
+                  { value: "maybe", label: "Maybe Later" },
+                  { value: "no", label: "No Thanks" },
+                ].map((option) => (
+                  <label key={option.value} className="flex items-center gap-3 p-3 border-2 border-[#0B0661] hover:bg-[#E8E5FF] cursor-pointer">
+                    <input
+                      type="radio"
+                      value={option.value}
+                      {...register("joinCommunity")}
+                      className="w-4 h-4 text-[#5C84FF]"
+                      onChange={() => setShowPlatformSelect(option.value === "yes")}
+                    />
+                    <span className="font-medium text-[#0B0661]">{option.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              {/* Platform Selection (conditional) */}
+              {(joinCommunity === "yes" || showPlatformSelect) && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="mt-4 pt-4 border-t-2 border-[#0B0661]"
+                >
+                  <h3 className="text-md font-bold mb-3 text-[#0B0661]">Preferred Platform</h3>
+                  <div className="grid grid-cols-3 gap-3">
+                    {platformOptions.map((platform) => (
+                      <label key={platform} className="flex items-center gap-2 p-3 border-2 border-[#0B0661] hover:bg-[#E8E5FF] cursor-pointer justify-center">
+                        <input
+                          type="radio"
+                          value={platform}
+                          {...register("preferredPlatform")}
+                          className="w-4 h-4 text-[#5C84FF]"
+                        />
+                        <span className="font-medium text-sm text-[#0B0661]">{platform}</span>
+                      </label>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
 
-            {/* Question 5 */}
+            {/* Question 5: Preserve for Future */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-white p-6 border-2 border-black"
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
             >
-              <h2 className="text-lg font-bold mb-4">
-                5. Maximum amount you would realistically pay per month?
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                What should every college preserve for future students?
               </h2>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl font-bold">₹</span>
-                <input
-                  type="number"
-                  {...register("maxAmount")}
-                  className="flex-1 px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  placeholder="Enter amount"
-                  min="0"
-                />
-                <span className="text-gray-600">/month</span>
-              </div>
+              <textarea
+                {...register("preserveForFuture")}
+                rows={4}
+                className="w-full px-4 py-3 border-2 border-[#0B0661] focus:outline-none focus:ring-4 focus:ring-[#5C84FF]/20 bg-white"
+                placeholder="Your thoughts..."
+              />
             </motion.div>
 
-            {/* Question 6 */}
+            {/* Question 6: Worth Paying For (Optional) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="bg-white p-6 border-2 border-black"
+              className="bg-white p-6 border-2 border-[#0B0661] shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]"
             >
-              <h2 className="text-lg font-bold mb-4">
-                6. Preferred payment style?
-              </h2>
-              <div className="space-y-3">
-                {[
-                  { value: "monthly", label: "Monthly", desc: "Pay each month" },
-                  { value: "yearly", label: "Yearly", desc: "Pay once a year (usually cheaper)" },
-                  { value: "both", label: "Both Options", desc: "Flexibility to choose" },
-                ].map((option) => (
-                  <label key={option.value} className="flex items-start gap-3 p-4 border-2 border-black hover:bg-gray-50 cursor-pointer">
-                    <input
-                      type="radio"
-                      value={option.value}
-                      {...register("paymentStyle")}
-                      className="w-4 h-4 text-purple-600 mt-1"
-                    />
-                    <div>
-                      <div className="font-medium">{option.label}</div>
-                      <div className="text-sm text-gray-600">{option.desc}</div>
-                    </div>
-                  </label>
-                ))}
+              <div className="inline-block px-3 py-1 border-2 border-[#0B0661] bg-[#E8E5FF] mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Optional</span>
               </div>
+              <h2 className="text-lg font-bold mb-4 text-[#0B0661]">
+                If Common Room offered premium features in the future, what would make it worth paying for?
+              </h2>
+              <textarea
+                {...register("worthPayingFor")}
+                rows={4}
+                className="w-full px-4 py-3 border-2 border-[#0B0661] focus:outline-none focus:ring-4 focus:ring-[#5C84FF]/20 bg-white"
+                placeholder="Your ideas..."
+              />
             </motion.div>
 
             {/* Submit Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.5 }}
             >
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide transition-opacity disabled:opacity-50"
+                className="w-full py-5 bg-[#0B0661] text-white border-3 border-[#0B0661] font-bold text-lg hover:bg-[#5C84FF] transition-colors uppercase tracking-wide disabled:opacity-50 shadow-[6px_6px_0px_0px_rgba(11,6,97,1)]"
               >
-                {isSubmitting ? "Submitting..." : "Submit Survey"}
+                {isSubmitting ? "Joining..." : "Join Early Access →"}
               </button>
               {submitError && (
                 <p className="mt-3 text-sm text-red-600 text-center">{submitError}</p>
@@ -280,17 +335,20 @@ function SurveyContent() {
                 type="button"
                 onClick={() => {
                   markSurveyCompleted();
-                  router.push("/thank-you");
+                  const position = searchParams.get("position") || "XX";
+                  const waitlistId = searchParams.get("waitlistId") || "";
+                  const email = searchParams.get("email") || "";
+                  router.push(`/success?position=${position}&waitlistId=${waitlistId}&email=${encodeURIComponent(email)}`);
                 }}
-                className="w-full mt-3 py-3 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
+                className="w-full mt-3 py-3 text-gray-600 hover:text-[#5C84FF] text-sm font-medium transition-colors"
               >
-                Skip Survey
+                Skip For Now
               </button>
             </motion.div>
           </form>
 
           <div className="mt-8 text-center">
-            <Link href="/" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+            <Link href="/" className="text-[#5C84FF] hover:text-[#0B0661] text-sm font-medium">
               ← Back to Home
             </Link>
           </div>

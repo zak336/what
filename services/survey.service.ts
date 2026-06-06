@@ -3,49 +3,48 @@ import { appendToSheet } from "@/lib/googlesheets";
 export async function submitPricingSurvey(data: {
   waitlistId: string;
   email: string;
-  willingToPay: string;
-  preferredPrice: string;
-  maximumPrice: string;
-  paymentModel: string;
+  joinReason: string;
   valuableFeatures: string[];
+  howHeard: string;
+  joinCommunity: string;
+  preferredPlatform: string;
+  preserveForFuture: string;
   worthPayingFor: string;
 }) {
   try {
-    // Store pricing survey data
-    const pricingValues = [
+    // Store onboarding survey data
+    const surveyValues = [
       data.waitlistId,
       data.email,
-      data.willingToPay,
-      data.preferredPrice,
-      data.maximumPrice,
-      data.paymentModel,
+      data.joinReason,
+      data.valuableFeatures.join(", "),
+      data.howHeard,
+      data.joinCommunity,
+      data.preferredPlatform,
+      data.preserveForFuture,
+      data.worthPayingFor,
+      new Date().toISOString(),
     ];
 
-    await appendToSheet("PricingSurvey", pricingValues);
+    await appendToSheet("OnboardingSurvey", surveyValues);
 
-    // Store subscription feedback separately
-    if (data.worthPayingFor) {
-      const feedbackValues = [data.waitlistId, data.email, data.worthPayingFor];
-      await appendToSheet("SubscriptionFeedback", feedbackValues);
-    }
-
-    // Store valuable features (if needed)
+    // Store valuable features separately for analysis
     if (data.valuableFeatures && data.valuableFeatures.length > 0) {
       const featurePromises = data.valuableFeatures.map((feature) => {
-        const values = [data.waitlistId, data.email, feature];
+        const values = [data.waitlistId, data.email, feature, new Date().toISOString()];
         return appendToSheet("ValuableFeatures", values);
       });
       await Promise.all(featurePromises);
     }
 
-    trackEvent("pricing_survey_completed", { waitlistId: data.waitlistId });
+    trackEvent("onboarding_survey_completed", { waitlistId: data.waitlistId });
 
     return {
       success: true,
       message: "Survey submitted successfully",
     };
   } catch (error) {
-    console.error("Pricing survey submission failed:", error);
+    console.error("Survey submission failed:", error);
     throw new Error("Failed to submit survey");
   }
 }

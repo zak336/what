@@ -115,17 +115,17 @@ function VerifyContent() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#faf8f3] py-20 px-4">
+    <main className="min-h-screen grid-paper py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href="/" className="text-black hover:underline mb-8 inline-block font-bold">← Back to Home</Link>
+        <Link href="/" className="text-[#5C84FF] hover:text-[#0B0661] mb-8 inline-block font-bold">← Back to Home</Link>
         
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="mb-12">
-            <div className="inline-block border-2 border-black px-4 py-1 mb-4 bg-white">
-              <span className="text-xs font-bold uppercase tracking-wider">Optional Step</span>
+            <div className="inline-block border-2 border-[#0B0661] px-4 py-1 mb-4 bg-[#FF6BD6] shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B0661]">Optional Step</span>
             </div>
             <div className="text-6xl mb-4">🎓</div>
-            <h1 className="text-5xl md:text-6xl font-black mb-4">Get Priority Access</h1>
+            <h1 className="text-5xl md:text-6xl font-black mb-4 text-[#0B0661]">Get Priority Access</h1>
             <p className="text-xl text-gray-700">Verify your student status to unlock exclusive benefits</p>
           </div>
 
@@ -133,23 +133,23 @@ function VerifyContent() {
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="bg-white p-5 border-2 border-black flex items-center gap-3">
-                  <Icon className="w-7 h-7 flex-shrink-0" />
-                  <span className="text-sm font-bold">{benefit.text}</span>
+                <div key={index} className="bg-white p-5 border-2 border-[#0B0661] flex items-center gap-3 shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
+                  <Icon className="w-7 h-7 flex-shrink-0 text-[#5C84FF]" />
+                  <span className="text-sm font-bold text-[#0B0661]">{benefit.text}</span>
                 </div>
               );
             })}
           </div>
 
-          <div className="bg-white p-8 border-3 border-black brutalist-border">
-            <h2 className="text-2xl font-black mb-6 uppercase">Upload Document</h2>
+          <div className="bg-white p-8 border-2 border-[#0B0661] shadow-[6px_6px_0px_0px_rgba(11,6,97,1)]">
+            <h2 className="text-2xl font-black mb-6 uppercase text-[#0B0661]">Upload Document</h2>
             
             <div className="mb-6">
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wider">Document Type</label>
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wider text-[#0B0661]">Document Type</label>
               <select
                 value={documentType}
                 onChange={(e) => setDocumentType(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-4 focus:ring-black/20"
+                className="w-full px-4 py-3 border-2 border-[#0B0661] focus:outline-none focus:ring-4 focus:ring-[#5C84FF]/20 bg-white"
               >
                 <option>Student ID Card</option>
                 <option>Admission Letter</option>
@@ -164,17 +164,17 @@ function VerifyContent() {
               onDragOver={handleDrag}
               onDrop={handleDrop}
               className={`border-2 border-dashed p-8 text-center transition-colors ${
-                dragActive ? "border-black bg-blue-50" : "border-black"
+                dragActive ? "border-[#5C84FF] bg-[#E8E5FF]" : "border-[#0B0661]"
               }`}
             >
               {file ? (
                 <div className="space-y-4">
-                  <CheckCircle className="w-12 h-12 text-green-500 mx-auto" />
+                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto" />
                   <div>
-                    <p className="font-medium">{file.name}</p>
-                    <p className="text-sm text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
+                    <p className="font-medium text-[#0B0661]">{file.name}</p>
+                    <p className="text-sm text-gray-600">{(file.size / 1024).toFixed(2)} KB</p>
                   </div>
-                  <button onClick={() => setFile(null)} className="text-sm text-red-600 hover:text-red-700 flex items-center gap-1 mx-auto">
+                  <button onClick={() => setFile(null)} className="text-sm text-red-600 hover:text-red-700 flex items-center gap-1 mx-auto font-bold">
                     <X className="w-4 h-4" /> Remove
                   </button>
                 </div>
@@ -183,7 +183,7 @@ function VerifyContent() {
                   <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-700 font-medium mb-2">Drag and drop your document here</p>
                   <p className="text-sm text-gray-500 mb-4">or</p>
-                  <label className="inline-block px-6 py-3 bg-black text-white font-bold hover-lift cursor-pointer uppercase text-sm">
+                  <label className="inline-block px-6 py-3 bg-[#0B0661] text-white font-bold hover:bg-[#5C84FF] transition-colors cursor-pointer uppercase text-sm shadow-[3px_3px_0px_0px_rgba(11,6,97,1)]">
                     Choose File
                     <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleChange} className="hidden" />
                   </label>
@@ -192,19 +192,19 @@ function VerifyContent() {
               )}
             </div>
 
-            <div className="mt-6 p-4 bg-blue-100 border-2 border-black flex gap-2">
-              <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div className="mt-6 p-4 bg-[#E8E5FF] border-2 border-[#0B0661] flex gap-2">
+              <Shield className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#5C84FF]" />
               <div className="text-sm">
-                <p className="font-bold mb-1">Your Privacy Matters</p>
+                <p className="font-bold mb-1 text-[#0B0661]">Your Privacy Matters</p>
                 <p className="text-gray-700">Documents are encrypted and used solely for verification.</p>
               </div>
             </div>
 
             <div className="mt-8 space-y-3">
-              <button onClick={handleUpload} disabled={!file || uploading} className="w-full py-5 bg-black text-white border-3 border-black font-bold text-lg hover-lift uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed">
+              <button onClick={handleUpload} disabled={!file || uploading} className="w-full py-5 bg-[#0B0661] text-white border-2 border-[#0B0661] font-bold text-lg hover:bg-[#5C84FF] transition-colors uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_rgba(11,6,97,1)]">
                 {uploading ? "Uploading..." : "Upload Document"}
               </button>
-              <button onClick={handleSkip} className="w-full py-3 text-black hover:underline font-bold uppercase text-sm">
+              <button onClick={handleSkip} className="w-full py-3 text-gray-600 hover:text-[#5C84FF] font-bold uppercase text-sm transition-colors">
                 Skip for Now
               </button>
             </div>

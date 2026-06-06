@@ -8,12 +8,13 @@ export async function POST(request: Request) {
     const result = await submitPricingSurvey({
       waitlistId: body.waitlistId,
       email: body.email,
-      willingToPay: body.willingToPay,
-      preferredPrice: body.pricePoint,
-      maximumPrice: body.maxAmount,
-      paymentModel: body.paymentStyle,
+      joinReason: body.joinReason,
       valuableFeatures: body.valuableFeatures || [],
-      worthPayingFor: body.worthPayingFor,
+      howHeard: body.howHeard,
+      joinCommunity: body.joinCommunity,
+      preferredPlatform: body.preferredPlatform || "",
+      preserveForFuture: body.preserveForFuture,
+      worthPayingFor: body.worthPayingFor || "",
     });
 
     return NextResponse.json(result);

@@ -7,6 +7,7 @@ export const SESSION_KEYS = {
   WAITLIST_COMPLETED: "waitlistCompleted",
   SURVEY_ALLOWED: "surveyAllowed",
   SURVEY_COMPLETED: "surveyCompleted",
+  VERIFY_ALLOWED: "verifyAllowed",
 } as const;
 
 // Store waitlist data after successful submission
@@ -29,6 +30,12 @@ export function allowSurveyAccess() {
   sessionStorage.setItem(SESSION_KEYS.SURVEY_ALLOWED, "true");
 }
 
+// Mark verify as accessible
+export function allowVerifyAccess() {
+  if (typeof window === "undefined") return;
+  sessionStorage.setItem(SESSION_KEYS.VERIFY_ALLOWED, "true");
+}
+
 // Mark survey as completed
 export function markSurveyCompleted() {
   if (typeof window === "undefined") return;
@@ -49,7 +56,7 @@ export function getWaitlistData() {
 // Check access permissions
 export function canAccessSuccess(): boolean {
   if (typeof window === "undefined") return false;
-  return sessionStorage.getItem(SESSION_KEYS.WAITLIST_COMPLETED) === "true";
+  return sessionStorage.getItem(SESSION_KEYS.SURVEY_COMPLETED) === "true";
 }
 
 export function canAccessVerify(): boolean {
@@ -74,4 +81,5 @@ export function cleanupOnboardingFlags() {
   sessionStorage.removeItem(SESSION_KEYS.WAITLIST_COMPLETED);
   sessionStorage.removeItem(SESSION_KEYS.SURVEY_ALLOWED);
   sessionStorage.removeItem(SESSION_KEYS.SURVEY_COMPLETED);
+  sessionStorage.removeItem(SESSION_KEYS.VERIFY_ALLOWED);
 }
